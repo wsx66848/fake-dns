@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "gycRS0sSBgqS5u2RaIvU/3J9RE0=",
+			"path": "github.com/google/gopacket",
+			"revision": "90caebb54a7ad26cde945bbb3b63652877de4c56",
+			"revisionTime": "2019-01-14T16:17:55Z"
+		},
+		{
+			"checksumSHA1": "0gnx2qCejuYJ4o41jmVlGmtTv5g=",
+			"path": "github.com/google/gopacket/layers",
+			"revision": "90caebb54a7ad26cde945bbb3b63652877de4c56",
+			"revisionTime": "2019-01-14T16:17:55Z"
+		}
+	],
+	"rootPath": "fakedns"
+}
