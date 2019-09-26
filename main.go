@@ -46,12 +46,17 @@ func main() {
 	defer fd.Close()
 
 	messageC := make(chan string, 5)
+	fileC := make(chan string, 5)
+	defer close(fileC)
+	defer close(messageC)
 	ctx, cancel := context.WithCancel(context.Background())
 	go func(ctx context.Context){
 		for {
 			select {
 			case msg := <- messageC:
 				log.Println(msg)
+			case content := <- fileC:
+				fd.Write([]byte(content))
 			case <- ctx.Done():
 				return
 			}
@@ -78,7 +83,7 @@ func main() {
 		for _, question := range query.Questions {
 			str += fmt.Sprintf("[%s]: client:%s, domain: %s, type: %s, class: %s\n", time.Now().Format("2006-01-02 15:03:04"), client, string(question.Name),question.Type, question.Class)
 		}
-		fd.Write([]byte(str))
+		fileC <- str
 		response := &layers.DNS{
 			ID: query.ID,
 			QR: true,
